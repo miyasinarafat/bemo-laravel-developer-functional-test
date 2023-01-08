@@ -19,7 +19,7 @@ composer install
 4. `./vendor/bin/sail npm install`
 5. `./vendor/bin/sail npm run dev` or `./vendor/bin/sail npm run build`
 
-**4. Now browse localhost or 0.0.0.0 to access your initial fullstack setup.**
+**4. Now browse localhost or 0.0.0.0 to access this test web panel and register/login to check it.**
 
 
 ### LICENSE
