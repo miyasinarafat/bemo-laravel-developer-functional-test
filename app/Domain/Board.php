@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Domain;
+namespace App\Domain;
 
 use Database\Factories\Domain\BoardFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -14,7 +14,10 @@ class Board extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['user_id', 'title'];
+    protected $fillable = [
+        'user_id',
+        'title',
+    ];
 
     /**
      * @return HasMany

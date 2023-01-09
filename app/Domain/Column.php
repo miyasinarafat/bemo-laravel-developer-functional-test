@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Domain;
+namespace App\Domain;
 
 use Database\Factories\Domain\ColumnFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -15,7 +15,11 @@ class Column extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['board_id', 'title', 'order'];
+    protected $fillable = [
+        'board_id',
+        'title',
+        'order',
+    ];
 
     /**
      * @return BelongsTo

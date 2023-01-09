@@ -2,8 +2,8 @@
 
 namespace Database\Factories\Domain;
 
-use App\Http\Domain\Card;
-use App\Http\Domain\Column;
+use App\Domain\Card;
+use App\Domain\Column;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -11,6 +11,13 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class CardFactory extends Factory
 {
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Card::class;
+
     /**
      * Define the model's default state.
      *
@@ -25,7 +32,7 @@ class CardFactory extends Factory
             'board_id' => $column->board_id,
             'column_id' => $column->id,
             'title' => fake()->name(),
-            'description' => fake()->name(),
+            'description' => fake()->paragraph(),
             'order' => 1,
         ];
     }

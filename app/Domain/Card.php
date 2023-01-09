@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Domain;
+namespace App\Domain;
 
 use Database\Factories\Domain\CardFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -14,7 +14,13 @@ class Card extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['board_id', 'column_id', 'title', 'description', 'order'];
+    protected $fillable = [
+        'board_id',
+        'column_id',
+        'title',
+        'description',
+        'order',
+    ];
 
     /**
      * @return BelongsTo
