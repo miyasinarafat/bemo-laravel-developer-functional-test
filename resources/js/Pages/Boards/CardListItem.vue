@@ -81,18 +81,3 @@ function onSubmit() {
         </div>
     </li>
 </template>
-
-<style scoped>
-.drag > div {
-    transform: rotate(5deg);
-}
-
-.ghost {
-    background: lightgray;
-    border-radius: 6px;
-}
-
-.ghost > div {
-    visibility: hidden;
-}
-</style>

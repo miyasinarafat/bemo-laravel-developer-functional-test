@@ -1,0 +1,12 @@
+.drag {
+    >div {
+        transform: rotate(5deg);
+    }
+}
+.ghost {
+    background: lightgray;
+    border-radius: 6px;
+    >div {
+        visibility: hidden;
+    }
+}
