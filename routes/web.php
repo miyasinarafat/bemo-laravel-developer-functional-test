@@ -34,6 +34,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 });
 
 
+Route::redirect('/', 'login');
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
