@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Domain\Board;
+use App\Domain\Card;
+use App\Domain\CardList;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,11 +17,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $user = User::factory()->create([
+            'name' => 'Arafat',
+            'email' => 'arafat@bemo.com',
+            'password' => bcrypt('secret'),
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $boards = Board::factory(10)->for($user)->create();
+
+        foreach ($boards as $board) {
+            $cardList = CardList::factory()->create([
+                'board_id' => $board->id,
+                'user_id' => $user->id
+            ]);
+
+            Card::factory(50)->create([
+                'board_id' => $board->id,
+                'user_id' => $user->id,
+                'list_id' => $cardList->id
+            ]);
+        }
     }
 }
