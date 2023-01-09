@@ -6,6 +6,7 @@ use App\Http\Controllers\CardListController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 /*
@@ -31,6 +32,20 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::put('/cards/{card}', [CardController::class, 'update'])->name('cards.update');
     Route::put('/cards/{card}/move', [CardController::class, 'move'])->name('cards.move');
     Route::delete('/cards/{card}', [CardController::class, 'destroy'])->name('cards.destroy');
+
+    Route::get('/sql-download', function () {
+        $todayDate = new DateTime("now");
+        $filename = "db_backup_" . $todayDate->format('Y-m-d') . ".sql";
+
+        Spatie\DbDumper\Databases\MySql::create()
+            ->setDbName(config('database.connections.mysql.database'))
+            ->setUserName(config('database.connections.mysql.username'))
+            ->setPassword(config('database.connections.mysql.password'))
+            ->setHost(config('database.connections.mysql.host'))
+            ->dumpToFile(storage_path('app/public/' . $filename));
+
+        return Storage::download("public/" . $filename);
+    })->name('sql.download');
 });
 
 
