@@ -3,7 +3,7 @@
 namespace Database\Factories\Domain;
 
 use App\Domain\Card;
-use App\Domain\Column;
+use App\Domain\CardList;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -25,15 +25,16 @@ class CardFactory extends Factory
      */
     public function definition()
     {
-        /** @var Column $column */
-        $column = Column::factory()->create();
+        /** @var CardList $column */
+        $list = CardList::factory()->create();
 
         return [
-            'board_id' => $column->board_id,
-            'column_id' => $column->id,
+            'user_id' => $list->user_id,
+            'board_id' => $list->board_id,
+            'list_id' => $list->id,
             'title' => fake()->name(),
             'description' => fake()->paragraph(),
-            'order' => 1,
+            'position' => 1,
         ];
     }
 }

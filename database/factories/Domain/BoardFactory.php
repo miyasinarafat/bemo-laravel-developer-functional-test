@@ -25,11 +25,8 @@ class BoardFactory extends Factory
      */
     public function definition()
     {
-        /** @var User $user */
-        $user = User::factory()->create();
-
         return [
-            'user_id' => $user->id,
+            'user_id' => User::factory(),
             'title' => fake()->name(),
         ];
     }

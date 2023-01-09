@@ -2,10 +2,12 @@
 
 namespace App\Domain;
 
+use App\Models\User;
 use Database\Factories\Domain\BoardFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -22,9 +24,17 @@ class Board extends Model
     /**
      * @return HasMany
      */
-    public function columns(): HasMany
+    public function lists(): HasMany
     {
-        return $this->hasMany(Column::class, 'board_id', 'id');
+        return $this->hasMany(CardList::class, 'board_id', 'id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     /**
